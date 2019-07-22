@@ -7,7 +7,10 @@ import List from './Components/List';
 class App extends React.Component {
 
   state = {
-    array: [],
+    array: [
+     // {id: '12345', value: "item 1", done: false},
+      //{id: '14321', value: "item 2", done: true}
+    ],
     input: ''
   }
 
@@ -21,8 +24,7 @@ class App extends React.Component {
   }
 
   addTodo = (inputValue) => {
-    console.log('@@@@@@@@@@@@@@@@@@')
-    //console.log(inputValue);
+   // console.log('@@@@@@@@@@@@@@@@@@')
     let newArray = [...this.state.array]
     newArray.push({ id: this.generateRandomString(10), value: inputValue, done: false })
 
@@ -42,12 +44,12 @@ class App extends React.Component {
   }
 
   editTodo = (id, newValue) => {
-    const { array } = this.state;
+    const { array } = this.state
     let newArray = array;
     let index = newArray.findIndex(elem => elem.id == id);
     newArray[index].value = newValue;
-   // alert('Это работает!', id);
-   console.log('newValue', newValue)
+    // alert('Это работает!', id);
+    console.log('newValue', newValue)
     this.setState({
       array: newArray
     })
@@ -58,21 +60,45 @@ class App extends React.Component {
     const newArray = array.filter(elem => elem.id !== id);
     this.setState({
       array: newArray
+
     })
   }
 
+  mark = (doneAll) => {
+    let newArray = [...this.state.array]
+    newArray.forEach(function (item) {
+      item.done = doneAll;
+    })
+    this.setState({
+      array: newArray
+    })
+  }
+  clearCompleted = () => {
+    let newArray = [...this.state.array]
+    newArray.forEach(function (item) {
+      if (item.done === true)  newArray = newArray.filter(item => item.done !== true);
+    })
+    this.setState({
+      array: newArray
+
+    }) 
+  }
+
   render() {
-    console.log('#############this.state.array', this.state)
+    console.log("render App")
     return (
       <div>
         <Add
           addFunc={this.addTodo}
-          clearInput={this.state.input} />
+          clearInput={this.state.input}
+          array={this.state.array}
+          mark={this.mark} />
         <List
           array={this.state.array}
           removeTask={this.removeTodo}
           readyTask={this.readyTodo}
           editTask={this.editTodo}
+          clearCompleted={this.clearCompleted}
         />
       </div>
     )

@@ -10,11 +10,9 @@ export default class Elem extends Component {
             id: '',
             edit: false
         }
-
-        
     }
 
-    
+
 
     removeTask = () => {
         this.props.removeTask(this.props.item.id);
@@ -23,10 +21,11 @@ export default class Elem extends Component {
     readyTask = () => {
         this.props.readyTask(this.props.item.id);
     }
-    
+
     editMode = () => {
-        this.setState({edit: !this.state.edit})
+        this.setState({ edit: !this.state.edit })
     }
+   
 
     handleInputChange = (e) => {
         const { value } = e.target;
@@ -34,22 +33,20 @@ export default class Elem extends Component {
     }
 
     render() {
-        console.log('render element', this.props.item);
+
+       // console.log('111111111111111111111111111111', this.props.item);
         return (
+
             <li key={this.props.item.id} >
 
                 <input type="checkbox" onChange={this.readyTask} checked={this.props.item.done} />
-                {!this.state.edit ? 
+                {!this.state.edit ?
                     <span className="span" onDoubleClick={this.editMode}>
                         {this.props.item.value}
                     </span>
-                 : <input autoFocus={true} type='text' onChange={this.handleInputChange} value={this.props.item.value} onBlur={this.editMode}/>
+                    : <input autoFocus={true} type='text' onChange={this.handleInputChange} value={this.props.item.value} onBlur={this.editMode} />
                 }
-            
-            
-                <button onClick={this.removeTask}>x</button>
-
-
+                <button onClick={this.removeTask} >x</button>
             </li>);
 
     }
