@@ -41,9 +41,13 @@ class App extends React.Component {
     })
   }
 
-  editTodo = (id) => {
-    let newArray = this.state.array
-    alert('Это работает!', id);
+  editTodo = (id, newValue) => {
+    const { array } = this.state;
+    let newArray = array;
+    let index = newArray.findIndex(elem => elem.id == id);
+    newArray[index].value = newValue;
+   // alert('Это работает!', id);
+   console.log('newValue', newValue)
     this.setState({
       array: newArray
     })
