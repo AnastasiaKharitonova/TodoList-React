@@ -3,14 +3,31 @@ import React, { Component } from 'react';
 import Elem from './Element';
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> parent of f7ea5db... Добавлены стили
 export default class List extends React.Component {
 
     state = {
         listState: 0, // 0 - All, 1 - Active, 2 - Completed
         
+<<<<<<< HEAD
+=======
     }
+
+/*   ModeAll = () => {
+        this.state.filterArray = this.props.array 
+>>>>>>> parent of f7ea5db... Добавлены стили
+    }
+    ModeActive = () => {
+        this.setState({ filterArray: this.props.array.filter(item => item.done !== true) })
+    }
+
+    ModeActive = () => {
+        this.setState({ filterArray: this.props.array.filter(item => item.done == true) })
+    } */
 
 /*   ModeAll = () => {
         this.state.filterArray = this.props.array 

@@ -1,8 +1,11 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+<<<<<<< HEAD
 import './index.css';
 
+=======
+>>>>>>> parent of f7ea5db... Добавлены стили
 import Add from './Components/Add';
 import List from './Components/List';
 
