@@ -1,25 +1,10 @@
 import React, { Component } from 'react';
-// import './App.css';
 import Elem from './Element';
-
-
 export default class List extends React.Component {
 
     state = {
         listState: 0, // 0 - All, 1 - Active, 2 - Completed
-        
     }
-
-/*   ModeAll = () => {
-        this.state.filterArray = this.props.array 
-    }
-    ModeActive = () => {
-        this.setState({ filterArray: this.props.array.filter(item => item.done !== true) })
-    }
-
-    ModeActive = () => {
-        this.setState({ filterArray: this.props.array.filter(item => item.done == true) })
-    } */
 
     clearCompleted = () => {
         this.setState({
@@ -40,7 +25,6 @@ export default class List extends React.Component {
         this.setState({
             listState: 0
         })
-
     }
 
     listActive = () => {
@@ -58,14 +42,12 @@ export default class List extends React.Component {
         })
     }
 
-
     render() {
-
 
         if (this.state.listState === 1) {
             console.log('if1');
-            var filter =this.props.array.filter(item => item.done !== true)
-            
+            var filter = this.props.array.filter(item => item.done !== true)
+
         }
         else if (this.state.listState === 2) {
             console.log('if2');
@@ -73,32 +55,37 @@ export default class List extends React.Component {
         }
         else {
             console.log('if3');
-             filter =this.props.array;
-        } 
-
-        console.log('filter = ', filter);
+            filter = this.props.array;
+        }
 
         return (
+            this.props.array.length !== 0 ?
+                <div className="list" >
+                    <ul>{filter.map((item, id) => {
+                        return (
+                            <Elem
+                                item={item}
+                                key={id}
+                                removeTask={this.props.removeTask}
+                                readyTask={this.props.readyTask}
+                                editTask={this.props.editTask}
+                            />)
+                    })}</ul>
 
-            <div>
-                <ul>{filter.map((item, id) => {
-                    return (
-                        <Elem
-                            item={item}
-                            key={id}
-                            removeTask={this.props.removeTask}
-                            readyTask={this.props.readyTask}
-                            editTask={this.props.editTask}
-                        />)
+                    <div className="stylez">
+                        {this.props.array.length} items left
+                        <div>
+                            <button className="btn btn-light" onClick={this.listAll}>All</button>
+                            <button className="btn btn-light" onClick={this.listActive}>Active</button>
+                            <button className="btn btn-light" onClick={this.listCompleted}>Completed</button>
+                        </div>
+                      
+                            <button onClick={this.props.clearCompleted} className="btn btn-light"> Clear completed </button>
+                       
+                    </div>
+                </div>
 
-                })}</ul>
-                <p> {this.props.array.length} items left </p>
-                <button onClick={this.listAll}>All</button>
-                <button onClick={this.listActive}>Active</button>
-                <button onClick={this.listCompleted}>Completed</button>
-                <button onClick={this.props.clearCompleted}> Clear completed </button>
-
-            </div>
+                : null
         );
     }
 }
