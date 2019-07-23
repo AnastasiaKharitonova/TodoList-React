@@ -1,11 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-<<<<<<< HEAD
-import './index.css';
-
-=======
->>>>>>> parent of f7ea5db... Добавлены стили
+import 'bootstrap/dist/css/bootstrap.min.css'
 import Add from './Components/Add';
 import List from './Components/List';
 
@@ -13,7 +9,7 @@ class App extends React.Component {
 
   state = {
     array: [
-     // {id: '12345', value: "item 1", done: false},
+      // {id: '12345', value: "item 1", done: false},
       //{id: '14321', value: "item 2", done: true}
     ],
     input: ''
@@ -29,7 +25,7 @@ class App extends React.Component {
   }
 
   addTodo = (inputValue) => {
-   // console.log('@@@@@@@@@@@@@@@@@@')
+    // console.log('@@@@@@@@@@@@@@@@@@')
     let newArray = [...this.state.array]
     newArray.push({ id: this.generateRandomString(10), value: inputValue, done: false })
 
@@ -81,30 +77,33 @@ class App extends React.Component {
   clearCompleted = () => {
     let newArray = [...this.state.array]
     newArray.forEach(function (item) {
-      if (item.done === true)  newArray = newArray.filter(item => item.done !== true);
+      if (item.done === true) newArray = newArray.filter(item => item.done !== true);
     })
     this.setState({
       array: newArray
 
-    }) 
+    })
   }
 
   render() {
     console.log("render App")
     return (
-      <div>
-        <Add
-          addFunc={this.addTodo}
-          clearInput={this.state.input}
-          array={this.state.array}
-          mark={this.mark} />
-        <List
-          array={this.state.array}
-          removeTask={this.removeTodo}
-          readyTask={this.readyTodo}
-          editTask={this.editTodo}
-          clearCompleted={this.clearCompleted}
-        />
+      <div className="container">
+        <h1 className='text'>Todos</h1>
+          <div className="shadow p-0 mb-5 bg-white rounded">
+            <Add
+              addFunc={this.addTodo}
+              clearInput={this.state.input}
+              array={this.state.array}
+              mark={this.mark} />
+            <List
+              array={this.state.array}
+              removeTask={this.removeTodo}
+              readyTask={this.readyTodo}
+              editTask={this.editTodo}
+              clearCompleted={this.clearCompleted}
+            />
+        </div>
       </div>
     )
   }

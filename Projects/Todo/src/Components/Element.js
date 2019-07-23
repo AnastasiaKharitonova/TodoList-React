@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
-// import './App.css';
-
 export default class Elem extends Component {
 
     constructor(props) {
@@ -11,8 +8,6 @@ export default class Elem extends Component {
             edit: false
         }
     }
-
-
 
     removeTask = () => {
         this.props.removeTask(this.props.item.id);
@@ -25,7 +20,7 @@ export default class Elem extends Component {
     editMode = () => {
         this.setState({ edit: !this.state.edit })
     }
-   
+
 
     handleInputChange = (e) => {
         const { value } = e.target;
@@ -34,21 +29,21 @@ export default class Elem extends Component {
 
     render() {
 
-       // console.log('111111111111111111111111111111', this.props.item);
         return (
 
-            <li key={this.props.item.id} >
+
+            <li key={this.props.item.id} className="list-group-item" >
 
                 <input type="checkbox" onChange={this.readyTask} checked={this.props.item.done} />
                 {!this.state.edit ?
-                    <span className="span" onDoubleClick={this.editMode}>
+                    <span  onDoubleClick={this.editMode}>
                         {this.props.item.value}
                     </span>
                     : <input autoFocus={true} type='text' onChange={this.handleInputChange} value={this.props.item.value} onBlur={this.editMode} />
                 }
-                <button onClick={this.removeTask} >x</button>
+                <div className="button">
+                    <button onClick={this.removeTask} width="15"  >x</button>
+                </div>
             </li>);
-
     }
-
 }
