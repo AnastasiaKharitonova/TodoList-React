@@ -1,5 +1,63 @@
 body {
-  margin: 0;
-  padding: 0;
+ background: #f2f2f2;
+ 
   font-family: sans-serif;
 }
+
+li{
+  list-style-type: none;
+  display : inline-block;
+  word-break: break-all;
+  padding: 0;
+  word-wrap: break-word;
+}
+
+ul {
+ margin-left: 0; /* Отступ слева в браузере IE и Opera */
+ padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+ } 
+ 
+ .center{
+  float: center;
+  font-size: 10pt;
+ }
+
+ .counter{
+  float: center;
+  font-family: Arial;
+  font-size: 10pt;
+  color:  	 #4d4d4d;
+}
+ 
+ .button {
+  float: right;
+  font-size: 10pt;
+}
+
+  .filter{
+    float: center;  
+    text-align: center;
+    color:#4d4d4d;
+
+  }
+  .right{
+    float: right;  
+    color:#4d4d4d;
+  }
+
+.text{
+  text-align: center;
+  font-family: 'Arial';
+  font-size: 48pt;
+  color:  	#d9bfbf;
+}
+.container{
+  width:600px;
+}
+.stylez{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
