@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-export default class Add extends Component {
+// import './App.css';
 
+
+
+export default class Add extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,15 +18,19 @@ export default class Add extends Component {
     this.setState({ value: e.target.value });
   }
 
+  handleTodo = () => {
+    if (((this.state.value).trim()).length > 0) {
+      this.props.addFunc(this.state.value)
+      this.setState({
+        value : this.props.clearInput
+      })
+     
+    }
+  }
+
   handleKeyPress(e) {
     if (e.which === 13) {
-      if (((this.state.value).trim()).length > 0) {
-        this.props.addFunc(this.state.value)
-        this.setState({
-          value: this.props.clearInput
-        })
-
-      }
+      this.handleTodo();
     }
   }
 
@@ -38,15 +45,12 @@ export default class Add extends Component {
 
   render() {
     return (
-      <div className="input-group mb-0">
-        <div className="input-group-prepend">
-          <button onClick={this.doneAll} className="btn btn-outline-secondary" type="button"> <img src="https://png.pngtree.com/svg/20161117/b360928f8b.svg"
-            width="15" /></button>
-        </div>
-        <input type="text" className="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" id="new" value={this.state.value} onChange={this.handleChange} onKeyPress={e => this.handleKeyPress(e)}
+      <div>
+        <h1>Todo List</h1>
+        <button onClick={this.doneAll}>V</button> <input type="text" id="new" value={this.state.value} onChange={this.handleChange} onKeyPress={e => this.handleKeyPress(e)}
           ref={el => this.inputTitle = el} autoComplete="off" placeholder="Что необходимо сделать?" />
+        <button onClick={this.handleTodo}>+</button>
       </div>
-
     )
   }
 
