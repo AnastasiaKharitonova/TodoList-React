@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './index.css';
+
 import Add from './Components/Add';
 import List from './Components/List';
 
